@@ -1,0 +1,27 @@
+[project]
+name = "imghack"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "deepeval>=2.5.5",
+    "pillow>=11.1.0",
+    "pydantic>=2.10.6",
+    "pydantic-settings>=2.8.1",
+    "pymupdf>=1.25.4",
+]
+
+[dependency-groups]
+dev = ["black>=25.1.0", "isort>=6.0.1"]
+
+[tool.setuptools]
+packages = ["src"]
+
+[project.scripts]
+pdfs2images = "src.make_images.pdf2image:run_pdf2images"
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
