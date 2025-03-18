@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
     "deepeval>=2.5.5",
+    "openai>=1.66.3",
     "pillow>=11.1.0",
     "pydantic>=2.10.6",
     "pydantic-settings>=2.8.1",
@@ -20,8 +21,10 @@ packages = ["src"]
 
 [project.scripts]
 pdfs2images = "src.make_images.pdf2image:run_pdf2images"
+eval_pdfs = "src.eval.deepeval_pdfs:main"
+text2images = "src.make_images.txt2image:run_text2images"
+eval_txt = "src.eval.deepeval_txt:main"
 
 [build-system]
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
-

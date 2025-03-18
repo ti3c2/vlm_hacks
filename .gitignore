@@ -1,5 +1,6 @@
 # Project files
-data
+data/attack_images
+data/png
 notebooks
 
 # Mac OS-specific storage files
