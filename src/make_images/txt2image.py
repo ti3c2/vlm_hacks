@@ -1,6 +1,6 @@
 import logging
 from pathlib import Path
-from typing import Tuple
+from typing import Optional, Tuple
 
 from PIL import Image, ImageDraw, ImageFont
 
@@ -51,6 +51,7 @@ def txt2image(
 def create_text_images(
     words_file: Path,
     txt_dir: Path = settings.attack_images_path / "txt",
+    crop: Optional[int] = None,
 ) -> None:
     """Creates images for all words in the input file."""
     save_dir = txt_dir / words_file.stem
@@ -59,9 +60,13 @@ def create_text_images(
     words = words_file.read_text().splitlines()
     for word in words:
         img = txt2image(word)
-        fname = save_dir / f"{word.replace(' ', '_')[:30]}.png"
+        fname_str = word.replace(" ", "_")
+        if crop is not None:
+            fname_str = fname_str[:crop]
+        fname = save_dir / f"{fname_str}.png"
         img.save(fname)
         logger.info(f"Saved image {fname.relative_to(PROJECT_PATH)}")
+    logger.info(f"Total images for {words_file.stem}: {len(words)}")
 
 
 def run_text2images() -> None:
